@@ -32,10 +32,21 @@ function loadReferers(source) {
 }
 
 async function loadReferersRemote(url, convert = JSON.parse) {
-  const data = await new Promise((resolve, reject) => {
+  var data = await new Promise((resolve, reject) => {
     https
       .get(url, res => {
-        res.on('data', d => resolve(d));
+        var body = '';
+        res.on('data', function (chunk) {
+          body = body + chunk;
+        });
+
+        res.on('end', function () {
+          if (res.statusCode != 200) {
+            reject(res);
+          } else {
+            resolve(body);
+          }
+        });
       })
       .on('error', e => {
         reject(e);
