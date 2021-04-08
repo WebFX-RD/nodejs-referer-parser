@@ -14,9 +14,7 @@
       "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     }
   ],
-  "dependencies": {
-    "js-yaml": "~2.1.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "mocha": "~1.12.0"
   }
