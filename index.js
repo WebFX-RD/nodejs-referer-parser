@@ -51,9 +51,9 @@ async function loadReferersRemote(url, convert = JSON.parse) {
       .on('error', e => {
         reject(e);
       });
-
-    loadReferers(convert(data));
   });
+
+  return loadReferers(convert(data));
 }
 
 function Referer(referer_url, current_url, referers) {
@@ -121,6 +121,7 @@ Referer.prototype._lookup_referer = function (ref_host, ref_path, include_path) 
       if (path_parts.length > 1) {
         try {
           referer = this.referers[ref_host + '/' + path_parts[1]];
+          // eslint-disable-next-line no-empty
         } catch (e) {}
       }
     }
