@@ -1,7 +1,7 @@
 var https = require('https'),
   url = require('url'),
-  querystring = require('querystring');
-
+  querystring = require('querystring'),
+  JSON5 = require('json5');
 function loadReferers(source) {
   var referers_dict = {};
 
@@ -31,7 +31,7 @@ function loadReferers(source) {
   return referers_dict;
 }
 
-async function loadReferersRemote(url, convert = JSON.parse) {
+async function loadReferersRemote(url, convert = JSON5.parse) {
   var data = await new Promise((resolve, reject) => {
     https
       .get(url, res => {
@@ -52,6 +52,8 @@ async function loadReferersRemote(url, convert = JSON.parse) {
         reject(e);
       });
   });
+
+  console.log(data);
 
   return loadReferers(convert(data));
 }
