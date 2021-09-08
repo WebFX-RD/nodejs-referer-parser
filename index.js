@@ -32,30 +32,35 @@ function loadReferers(source) {
 }
 
 async function loadReferersRemote(url, convert = JSON5.parse) {
-  var data = await new Promise((resolve, reject) => {
-    https
-      .get(url, res => {
-        var body = '';
-        res.on('data', function (chunk) {
-          body = body + chunk;
+  try {
+    var data = await new Promise((resolve, reject) => {
+      https
+        .get(url, res => {
+          var body = '';
+          res.on('data', function (chunk) {
+            body = body + chunk;
+          });
+
+          res.on('end', function () {
+            if (res.statusCode != 200) {
+              reject(res);
+            } else {
+              resolve(body);
+            }
+          });
+        })
+        .on('error', e => {
+          reject(e);
         });
+    });
 
-        res.on('end', function () {
-          if (res.statusCode != 200) {
-            reject(res);
-          } else {
-            resolve(body);
-          }
-        });
-      })
-      .on('error', e => {
-        reject(e);
-      });
-  });
+    console.log(data);
 
-  console.log(data);
-
-  return loadReferers(convert(data));
+    return loadReferers(convert(data));
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
 }
 
 function Referer(referer_url, current_url, referers) {
