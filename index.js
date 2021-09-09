@@ -54,11 +54,8 @@ async function loadReferersRemote(url, convert = JSON5.parse) {
         });
     });
 
-    console.log(data);
-
     return loadReferers(convert(data));
   } catch (err) {
-    console.log(err);
     return null;
   }
 }
