@@ -1,10 +1,14 @@
 {
-  "name": "referer-parser",
+  "name": "@webfx-rd/referer-parser",
   "version": "0.0.4",
   "description": "library for extracting marketing attribution data (such as search terms) from referrer URLs",
   "main": "index.js",
   "scripts": {
+    "release": "release-it",
     "test": "make test"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/webfx-rd"
   },
   "repository": "",
   "author": "Martin Katrenik <martin.katrenik@gmail.com>",
@@ -18,6 +22,38 @@
     "json5": "^2.2.0"
   },
   "devDependencies": {
-    "mocha": "~10.7.3"
+    "@release-it/conventional-changelog": "^8.0.1",
+    "mocha": "~10.7.3",
+    "release-it": "^17.0.5"
+  },
+  "release-it": {
+    "github": {
+      "release": false
+    },
+    "npm": {
+      "publish": true
+    },
+    "git": {
+      "requireCleanWorkingDir": false
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "infile": "CHANGELOG.md",
+        "preset": {
+          "name": "conventionalcommits",
+          "types": [
+            {
+              "type": "feat",
+              "section": "Features"
+            },
+            {
+              "type": "fix",
+              "section": "Bug Fixes"
+            },
+            {}
+          ]
+        }
+      }
+    }
   }
 }
