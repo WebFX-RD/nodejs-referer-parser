@@ -22,9 +22,9 @@
     "json5": "^2.2.0"
   },
   "devDependencies": {
-    "@release-it/conventional-changelog": "^8.0.1",
+    "@release-it/conventional-changelog": "^10.0.1",
     "mocha": "~10.7.3",
-    "release-it": "^17.0.5"
+    "release-it": "^19.0.6"
   },
   "release-it": {
     "github": {
