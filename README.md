@@ -1,16 +1,6 @@
-# referer-parser node.js (JavaScript) library
+# nodejs-referer-parser
 
-Updated implementation [referer-parser][referer-parser] that requires you to feed your own referers for parsing instead of loading from within packages.
-
-Provides access to two methods for loading and preparing the referrers object.
-
-This is the node.js (JavaScript) implementation of [referer-parser][referer-parser], the library for extracting search marketing data from referer _(sic)_ URLs.
-
-The Javascript version of referer-parser is maintained by [Martin Katrenik][mkatrenik].
-
-## Installation
-
-    $ npm install referer-parser
+This is our fork of https://www.npmjs.com/package/referer-parser - a very old package.
 
 ## Usage
 
@@ -68,19 +58,17 @@ const dataFile = fs.readFileSync(path.join(__dirname, 'data', 'referers.json'));
 const referrers = loadReferers(JSON.parse(dataFile));
 ```
 
-## Copyright and license
+## Development
 
-The referer-parser node.js (JavaScript) library is copyright 2013 Martin Katrenik.
+This package is not published to any NPM registry. It's installed directly from this repository:
 
-Licensed under the [Apache License, Version 2.0][license] (the "License");
-you may not use this software except in compliance with the License.
+```json
+{
+  "dependencies": {
+    "referer-parser": "https://github.com/WebFX-RD/nodejs-referer-parser.git"
+  }
+}
+```
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-[referer-parser]: https://github.com/snowplow/referer-parser
-[mkatrenik]: https://github.com/mkatrenik
-[license]: http://www.apache.org/licenses/LICENSE-2.0
+Therefore, there is no "deploy" step per se. 
+The only thing to keep in mind is that you should try to run `npm run build:types` before pushing it to remote to avoid breaking TypeScript consumers.
