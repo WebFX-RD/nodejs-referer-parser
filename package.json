@@ -3,7 +3,9 @@
   "version": "0.0.4",
   "description": "library for extracting marketing attribution data (such as search terms) from referrer URLs",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
+    "build:types": "tsc",
     "release": "release-it",
     "test": "make test"
   },
@@ -24,7 +26,8 @@
   "devDependencies": {
     "@release-it/conventional-changelog": "^8.0.1",
     "mocha": "~10.7.3",
-    "release-it": "^17.0.5"
+    "release-it": "^17.0.5",
+    "typescript": "^5.0.0"
   },
   "release-it": {
     "github": {
